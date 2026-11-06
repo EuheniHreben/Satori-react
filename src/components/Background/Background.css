@@ -1,0 +1,27 @@
+.bg-layer {
+  position: absolute;
+  inset: -20px;
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(1px);
+  pointer-events: none;
+
+  transition: opacity 30s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.page-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #0e0f11;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-wrapper--splash::after {
+  opacity: 1;
+}
