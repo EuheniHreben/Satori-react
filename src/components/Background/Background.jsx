@@ -1,10 +1,19 @@
-import backgrounds from "../../data/backgrounds";
 import "./Background.css";
+import findActiveBackground from "../../utils/findActiveBackground";
+import backgrounds from "../../data/backgrounds";
 
-function Background({ activeSeason, activeTime }) {
+function Background({ activeSeason, activeTime, isStarted }) {
+  const activeBackground = findActiveBackground({ activeSeason, activeTime });
+
+  const visibleBackgrounds = isStarted
+    ? backgrounds
+    : activeBackground
+      ? [activeBackground]
+      : [];
+
   return (
     <>
-      {backgrounds.map((bg) => {
+      {visibleBackgrounds.map((bg) => {
         const isActive = bg.season === activeSeason && bg.time === activeTime;
 
         return (

@@ -8,7 +8,7 @@
   filter: blur(1px);
   pointer-events: none;
 
-  transition: opacity 30s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 20s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .page-wrapper::after {

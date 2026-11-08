@@ -1,0 +1,729 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Киберпанк сцена */
+body {
+  font-family: "Inter", sans-serif;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 42%,
+      rgba(12, 35, 65, 0.45) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(0, 163, 255, 0.09),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 65%,
+      rgba(255, 0, 127, 0.07),
+      transparent 35%
+    ),
+    #020208;
+
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  perspective: 1000px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 75% 35%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 45% 75%, #00a3ff 50%, transparent 100%),
+    radial-gradient(1px 1px at 85% 80%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 25% 65%, #ff007f 50%, transparent 100%);
+
+  background-size:
+    230px 230px,
+    310px 310px,
+    270px 270px,
+    350px 350px,
+    290px 290px;
+
+  opacity: 0.25;
+}
+
+.cyber-sun {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(100vw, 1100px);
+  aspect-ratio: 1;
+
+  background: radial-gradient(
+    circle,
+    rgba(0, 163, 255, 0.22) 0%,
+    rgba(0, 100, 200, 0.12) 30%,
+    rgba(255, 0, 127, 0.09) 55%,
+    transparent 72%
+  );
+
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#resultMainText {
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+
+#resultSubitemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@keyframes sunPulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+    filter: blur(2px) drop-shadow(0 0 30px rgba(255, 0, 127, 0.5));
+  }
+  100% {
+    transform: translateX(-50%) scale(1.05);
+    filter: blur(3px) drop-shadow(0 0 60px rgba(255, 0, 127, 0.8));
+  }
+}
+
+/* Премиум Элемент 2: Бесконечная 3D сетка с эффектом полета */
+.grid-3d {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 50vh;
+  background-image:
+    linear-gradient(to right, rgba(0, 163, 255, 0.15) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(0, 163, 255, 0.15) 2px, transparent 2px);
+  background-size: 60px 60px;
+  background-position: center top;
+  transform: rotateX(55deg);
+  transform-origin: top center;
+  animation: gridFly 1.5s linear infinite;
+  z-index: 0;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+}
+
+@keyframes gridFly {
+  0% {
+    background-position: center 0;
+  }
+  100% {
+    background-position: center 60px;
+  }
+}
+
+/* Премиум Элемент 3: Линия неонового горизонта */
+.horizon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #ff007f,
+    #fff,
+    #ff007f,
+    transparent
+  );
+  box-shadow: 0 0 15px #ff007f;
+  z-index: 0;
+}
+
+/* Эффект шума старого монитора поверх всего */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.02),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.02)
+    );
+  z-index: 999;
+  background-size:
+    100% 4px,
+    6px 100%;
+  pointer-events: none;
+
+  background-color: transparent;
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.45);
+}
+
+h1 {
+  margin-bottom: 40px;
+  font-size: clamp(1.4rem, 5vw, 2.5rem);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #ffffff;
+  text-shadow:
+    0 0 10px #fff,
+    0 0 20px #fff;
+  z-index: 2;
+}
+
+.roulette-container {
+  position: relative;
+  width: min(600px, 90vw);
+  height: min(600px, 90vw);
+  margin-bottom: 40px;
+  z-index: 2;
+}
+
+/* Стрелка указателя */
+.pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 32px solid #fff;
+  z-index: 10;
+  filter: drop-shadow(0 0 15px #fff);
+  animation: pointerGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pointerGlow {
+  0% {
+    filter: drop-shadow(0 0 10px #ff007f);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px #ff007f) brightness(1.2);
+  }
+}
+
+/* Премиум барабан */
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  /* Двойной неоновый градиентный контур в стиле Outrun */
+  /* border: 4px solid #fff; */
+  /* outline: 4px solid #ff007f; */
+  outline-offset: 4px;
+  /* background: #050510; */
+  --idle-start: 0deg;
+  transition: transform var(--spin-duration, 10s)
+    cubic-bezier(0.05, 0.9, 0.1, 1);
+}
+
+.wheel.idle {
+  animation: idleSpin 60s linear infinite;
+}
+
+@keyframes idleSpin {
+  from {
+    transform: rotate(var(--idle-start));
+  }
+
+  to {
+    transform: rotate(calc(var(--idle-start) + 360deg));
+  }
+}
+
+/* Стилизация интерактивных секторов внутри SVG */
+.wheel text {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 14px;
+  fill: #000;
+  text-shadow: 0 0 2px #000;
+}
+
+.wheel g.slice {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+/* Премиум кнопка */
+.spin-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: #020208;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow:
+    0 0 20px rgba(0, 163, 255, 0.6),
+    inset 0 0 10px rgba(0, 163, 255, 0.3);
+  z-index: 5;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-shadow: 0 0 8px #fff;
+  letter-spacing: 1px;
+}
+
+.spin-btn:hover {
+  background: #fff;
+  color: #020208;
+  box-shadow:
+    0 0 35px #fff,
+    inset 0 0 10px rgba(255, 255, 255, 0.5);
+  text-shadow: none;
+  font-size: 18px;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.spin-btn:active {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.spin-btn:disabled {
+  background: #0a0a10;
+  color: #224466;
+  border-color: #224466;
+  box-shadow: none;
+  text-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Общие стили для модальных окон */
+.modal-window {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(2, 2, 8, 0.98);
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 30px 40px;
+  border-radius: 4px;
+  box-shadow:
+    0 0 40px rgba(0, 163, 255, 0.5),
+    inset 0 0 15px rgba(0, 163, 255, 0.2);
+  text-align: center;
+  z-index: 1000;
+  min-width: 320px;
+  max-width: 90%;
+}
+
+.result-modal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+
+  transition:
+    opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.result-modal.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-window h2 {
+  font-size: 14px;
+  color: #ff007f;
+  margin-bottom: 32px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px #ff007f;
+}
+
+/* Окно результатов (исправленный фрагмент) */
+.result-modal p {
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 163, 255, 0.5);
+  margin-bottom: 15px;
+}
+
+/* Подпункты в окне результатов */
+.result-subitems {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 0, 127, 0.05);
+  border-left: 3px solid #ff007f;
+  text-align: left;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.result-subitems li {
+  list-style: none;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 5px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.result-subitems li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: #ff007f;
+}
+
+/* Форма добавления подпунктов */
+.subitem-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.subitem-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-input {
+  flex: 1;
+  background: #020208;
+  border: 1px solid #fff;
+  padding: 10px;
+  color: #fff;
+  font-family: inherit;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: #ff007f;
+  box-shadow: 0 0 8px #ff007f;
+}
+
+.modal-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.modal-btn:hover {
+  background: #fff;
+  color: #020208;
+  box-shadow: 0 0 10px #fff;
+}
+
+.modal-btn.pink-btn {
+  border-color: #ff007f;
+  color: #ff007f;
+}
+
+.modal-btn.pink-btn:hover {
+  background: #ff007f;
+  color: #fff;
+  box-shadow: 0 0 10px #ff007f;
+}
+
+/* Список уже добавленных элементов внутри редактора */
+.added-subitems-list {
+  text-align: left;
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.added-subitems-list div {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+/* Подложка (blur эффект сзади модалок) */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 2, 8, 0.99);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Поверх всего сайта */
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s; /* Плавное исчезновение */
+}
+.enter-btn {
+  padding: 18px 45px;
+  font-size: 1.3rem;
+  font-family:
+    "Courier New", Courier, monospace; /* Компьютерный/лабораторный шрифт */
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: #000; /* Черный строгий фон кнопки */
+  border: 3px solid #fff;
+  cursor: pointer;
+  border-radius: 0px; /* Квадратные формы лучше подходят стилю корпорации */
+  position: relative;
+  outline: none;
+
+  /* Подключаем анимацию пульсации и смены цвета */
+  animation: umbrellaPulse 3s infinite ease-in-out;
+}
+
+.enter-btn:hover {
+  background: #a30000;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 25px #ff0000;
+  animation: none; /* Отключаем пульсацию при наведении */
+  transition: all 0.2s ease;
+}
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+@keyframes umbrellaPulse {
+  0% {
+    border-color: #ffffff;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    border-color: #cc0000;
+    color: #cc0000;
+    box-shadow: 0 0 25px rgba(204, 0, 0, 0.8); /* Красное свечение в пике */
+  }
+  100% {
+    border-color: #ffffff;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* ==========================================================================
+   Блок: Глитч-заголовок в стиле Киберпанк / VHS
+   ========================================================================== */
+
+.glitch-title {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  /* Мягкое золотое или белое свечение в стабильном состоянии */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  user-select: none;
+}
+
+/* Красный слепок текста (Сдвиг влево) */
+.glitch-title::before {
+  content: attr(data-text-red);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  /* Сдвигаем красный текстовый слой чуть левее */
+  text-shadow: -2px 0 #ff0055;
+  /* Скрываем по умолчанию, активируем в анимации */
+  clip-path: rect(0 0 0 0);
+  animation: vhsGlitchRed 6s infinite linear;
+}
+
+/* Синий/Бирюзовый слепок текста (Сдвиг вправо) */
+.glitch-title::after {
+  content: attr(data-text-blue);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  /* Сдвигаем бирюзовый слой чуть правее */
+  text-shadow: 2px 0 #00ffff;
+  clip-path: rect(0 0 0 0);
+  animation: vhsGlitchBlue 6s infinite linear;
+}
+
+/* ==========================================================================
+   Анимации глитча (6-секундный цикл с редкими вспышками)
+   ========================================================================== */
+
+@keyframes vhsGlitchRed {
+  /* 0% - 80% времени: заголовок полностью стабилен */
+  0%,
+  80% {
+    clip-path: inset(100% 0 0 0);
+    transform: skew(0deg);
+  }
+  /* Начинается микро-искажение (нарезка полос через clip-path) */
+  81% {
+    clip-path: inset(10% 0 75% 0); /* Вырезаем узкую горизонтальную полосу */
+    transform: skew(-3deg) translateX(-2px);
+  }
+  82% {
+    clip-path: inset(55% 0 15% 0);
+    transform: skew(2deg) translateX(3px);
+  }
+  83% {
+    clip-path: inset(30% 0 40% 0);
+    transform: skew(0deg) translateX(-1px);
+  }
+  /* Короткий возврат в норму */
+  84%,
+  92% {
+    clip-path: inset(100% 0 0 0);
+    transform: skew(0deg);
+  }
+  /* Второй быстрый удар искажения (эффект нестабильности) */
+  93% {
+    clip-path: inset(5% 0 85% 0);
+    transform: skew(5deg) translateX(4px);
+  }
+  94% {
+    clip-path: inset(80% 0 5% 0);
+    transform: skew(-2deg) translateX(-3px);
+  }
+  /* Полная стабилизация до конца цикла */
+  95%,
+  100% {
+    clip-path: inset(100% 0 0 0);
+    transform: skew(0deg);
+  }
+}
+
+@keyframes vhsGlitchBlue {
+  /* Зеркальная анимация для синего слоя, чтобы слои двигались в противофазе */
+  0%,
+  80% {
+    clip-path: inset(100% 0 0 0);
+    transform: skew(0deg);
+  }
+  81% {
+    clip-path: inset(40% 0 30% 0);
+    transform: skew(3deg) translateX(2px);
+  }
+  82% {
+    clip-path: inset(15% 0 65% 0);
+    transform: skew(-2deg) translateX(-3px);
+  }
+  83% {
+    clip-path: inset(70% 0 10% 0);
+    transform: skew(0deg) translateX(1px);
+  }
+  84%,
+  92% {
+    clip-path: inset(100% 0 0 0);
+    transform: skew(0deg);
+  }
+  93% {
+    clip-path: inset(65% 0 15% 0);
+    transform: skew(-4deg) translateX(-4px);
+  }
+  94% {
+    clip-path: inset(20% 0 75% 0);
+    transform: skew(3deg) translateX(3px);
+  }
+  95%,
+  100% {
+    clip-path: inset(100% 0 0 0);
+    transform: skew(0deg);
+  }
+}
+
+/* React state helpers */
+.modal-window.is-open {
+  display: block;
+}
+
+.modal-overlay.is-open {
+  display: block;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #00a3ff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+
+  .roulette-container {
+    margin-bottom: 24px;
+  }
+
+  .spin-btn {
+    width: 78px;
+    height: 78px;
+    font-size: 13px;
+  }
+
+  .modal-window {
+    min-width: 0;
+    width: min(92vw, 440px);
+    padding: 24px 20px;
+  }
+
+  .result-modal p {
+    font-size: 1.45rem;
+  }
+}
