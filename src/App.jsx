@@ -64,7 +64,7 @@ function App() {
     const intervalId = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * quotes.length);
       setQuote(quotes[randomIndex]);
-    }, 30000);
+    }, 60000);
 
     return () => clearInterval(intervalId);
   }, []);

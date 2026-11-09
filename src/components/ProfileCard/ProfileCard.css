@@ -51,7 +51,7 @@
 }
 
 .card--default {
-  height: 440px;
+  height: 460px;
 }
 
 .card-inner {
@@ -78,8 +78,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: clamp(6px, 4vw, 18px);
+  justify-content: space-around;
+  /* gap: clamp(6px, 4vw, 20px); */
 
   padding: clamp(20px, 5vw, 28px);
 
@@ -98,7 +98,7 @@
 
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  user-select: none; 
+  user-select: none;
   -webkit-user-select: none;
 }
 
@@ -107,6 +107,7 @@
 }
 
 .card-back {
+  justify-content: space-between;
   transform: rotateY(180deg);
   color: #fff;
   background:
@@ -116,11 +117,9 @@
       rgba(14, 15, 17, 0.38) 100%
     ),
     url("../../assets/Card/cardBackSummer.png") center center / cover no-repeat;
-
 }
 
 .card-back__return {
-  margin-top: auto;
   padding: 8px 20px;
 
   border: 1px solid rgba(212, 175, 124, 0.4);
@@ -131,16 +130,14 @@
 
   font: inherit;
   cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .card-back__return:hover {
   background: rgba(212, 175, 124, 0.15);
   border-color: rgba(212, 175, 124, 0.8);
-}
-
-.avatar {
-  margin-top: clamp(0px, 3vw, 20px);
 }
 
 .avatar img {

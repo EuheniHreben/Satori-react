@@ -37,15 +37,20 @@
   font-size: 13px;
 }
 
-.pomodoro-timer__controls {
+.pomodoro-timer__icon-group {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   gap: 8px;
 }
 
-.pomodoro-timer__controls button {
-  padding: 8px 14px;
+.pomodoro-timer__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 34px;
+  padding: 6px 10px;
   border: 1px solid rgba(212, 175, 124, 0.4);
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.35);
@@ -55,6 +60,8 @@
   transition: background 0.25s ease;
 }
 
-.pomodoro-timer__controls button:hover {
-  background: rgba(212, 175, 124, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .pomodoro-timer__controls button:hover {
+    background: rgba(212, 175, 124, 0.2);
+  }
 }

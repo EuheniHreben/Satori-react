@@ -14,26 +14,71 @@
 
 .pomodoro-settings__field {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
-
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 15px;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
-.pomodoro-settings__field input {
-  box-sizing: border-box;
+.pomodoro-settings__field:last-child {
+  margin-bottom: 0;
+}
+
+.pomodoro-settings__label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.pomodoro-settings__counter {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pomodoro-settings__btn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.pomodoro-settings__btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pomodoro-settings__input {
   width: 75px;
+  height: 32px;
+  background: transparent;
+  color: #fff;
+  text-align: center;
   padding: 8px;
 
   border: 1px solid rgba(212, 175, 124, 0.4);
   border-radius: 8px;
 
   background: rgba(0, 0, 0, 0.4);
-  color: #fff;
+
   font: inherit;
-  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.pomodoro-settings__input::-webkit-outer-spin-button,
+.pomodoro-settings__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pomodoro-settings__input:focus {
+  outline: none;
 }
 
 .pomodoro-settings__field input:focus {

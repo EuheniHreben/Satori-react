@@ -1,4 +1,12 @@
 import "./ControlPanel.css";
+import {
+  IoSunny,
+  IoMoon,
+  IoLeaf,
+  IoFlame,
+  IoSnow,
+  IoSunnyOutline,
+} from "react-icons/io5";
 
 function ControlPanel({
   autoMode,
@@ -32,12 +40,16 @@ function ControlPanel({
       <div
         className={`bottom-toolbar ${!autoMode ? "bottom-toolbar--open" : ""}`}
       >
+        {/* ЛЕТО */}
         <button
           type="button"
           onClick={() => onChangeBackground("summer", "day")}
           className={getBtnClass("summer", "day")}
         >
-          Летний день
+          <div className="theme-btn__icons">
+            <IoSunny size={20} />
+            <IoSunnyOutline size={14} />
+          </div>
         </button>
 
         <button
@@ -45,15 +57,22 @@ function ControlPanel({
           onClick={() => onChangeBackground("summer", "night")}
           className={getBtnClass("summer", "night")}
         >
-          Летняя ночь
+          <div className="theme-btn__icons">
+            <IoSunny size={20} />
+            <IoMoon size={14} />
+          </div>
         </button>
 
+        {/* ОСЕНЬ */}
         <button
           type="button"
           onClick={() => onChangeBackground("autumn", "day")}
           className={getBtnClass("autumn", "day")}
         >
-          Осенний день
+          <div className="theme-btn__icons">
+            <IoFlame size={20} />
+            <IoSunnyOutline size={14} />
+          </div>
         </button>
 
         <button
@@ -61,15 +80,22 @@ function ControlPanel({
           onClick={() => onChangeBackground("autumn", "night")}
           className={getBtnClass("autumn", "night")}
         >
-          Осенняя ночь
+          <div className="theme-btn__icons">
+            <IoFlame size={20} />
+            <IoMoon size={14} />
+          </div>
         </button>
 
+        {/* ЗИМА */}
         <button
           type="button"
           onClick={() => onChangeBackground("winter", "day")}
           className={getBtnClass("winter", "day")}
         >
-          Зимний день
+          <div className="theme-btn__icons">
+            <IoSnow size={20} />
+            <IoSunnyOutline size={14} />
+          </div>
         </button>
 
         <button
@@ -77,15 +103,22 @@ function ControlPanel({
           onClick={() => onChangeBackground("winter", "night")}
           className={getBtnClass("winter", "night")}
         >
-          Зимняя ночь
+          <div className="theme-btn__icons">
+            <IoSnow size={20} />
+            <IoMoon size={14} />
+          </div>
         </button>
 
+        {/* ВЕСНА */}
         <button
           type="button"
           onClick={() => onChangeBackground("spring", "day")}
           className={getBtnClass("spring", "day")}
         >
-          Весенний день
+          <div className="theme-btn__icons">
+            <IoLeaf size={20} />
+            <IoSunnyOutline size={14} />
+          </div>
         </button>
 
         <button
@@ -93,7 +126,10 @@ function ControlPanel({
           onClick={() => onChangeBackground("spring", "night")}
           className={getBtnClass("spring", "night")}
         >
-          Весенняя ночь
+          <div className="theme-btn__icons">
+            <IoLeaf size={20} />
+            <IoMoon size={14} />
+          </div>
         </button>
       </div>
     </div>
